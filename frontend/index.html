@@ -3,211 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gemini Price Predictor</title>
-    <link rel="stylesheet" href="style.css">
+    <title>PriceSense AI - Indian Market Price Predictor</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">💰 PriceSense AI</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#predict">Predict</a></li>
+                    <li><a href="#about">How it Works</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <main class="container">
-
-        <!-- Header Section -->
-        <header class="header animated-card glass-card">
-            <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-gem animated-icon"></i>
-                    <h1>Gemini Price Predictor</h1>
-                </div>
-                <p class="tagline">An AI-powered tool to predict product prices with precision.</p>
-            </div>
-        </header>
-
-        <!-- Main content area -->
-        <div id="main-content" class="glass-card">
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Input Panel -->
+        <div class="input-panel" id="inputSection">
+            <h1>AI Price Predictor</h1>
+            <p>Enter detailed product specifications and get instant AI-powered market price predictions for the Indian market. Try examples like <span class="highlight">"iPhone 15 Pro 256GB used condition"</span> or <span class="highlight">"Dell XPS 13 laptop i7 16GB RAM"</span></p>
             
-            <!-- Input Section -->
-            <section id="input-section" class="input-section">
-                <div class="section-header">
-                    <i class="fas fa-pencil-alt animated-icon"></i>
-                    <h2>Enter Product Details</h2>
+            <form class="input-form" id="inputForm">
+                <div class="input-wrapper">
+                    <textarea 
+                        id="specsInput" 
+                        placeholder="Enter product specifications here...&#10;&#10;Examples:&#10;• Samsung Galaxy S24 Ultra 512GB new&#10;• MacBook Air M2 8GB RAM used&#10;• Sony WH-1000XM4 headphones&#10;• OnePlus 12 256GB refurbished"
+                        rows="6"
+                    ></textarea>
                 </div>
-                <div class="input-group">
-                    <label for="product-description">Product Description</label>
-                    <textarea id="product-description" rows="8" placeholder="Enter a detailed description of the product..."></textarea>
-                </div>
-                <button id="predict-btn" class="predict-btn">
-                    <i class="fas fa-magic"></i> Predict Price
+                <button type="submit" id="predictBtn">
+                    <span>🔮 Predict Price</span>
                 </button>
-            </section>
+            </form>
+        </div>
+
+        <!-- Results Panel -->
+        <div class="results-panel">
+            <div class="results-header">
+                <h2>Price Predictions</h2>
+                <p>Real-time AI analysis of Indian market prices</p>
+            </div>
 
             <!-- Loading Section -->
-            <section id="loading-section" class="loading-section hidden">
-                <div class="loader-container">
-                    <div class="simple-loader"></div>
-                </div>
+            <div id="loadingSection" class="loading-section hidden">
+                <div class="loading-spinner"></div>
                 <div class="loading-text">
-                    <h3>Analyzing your product...</h3>
-                    <p>This may take a few moments. Please wait.</p>
+                    <p>Analyzing market data...</p>
                 </div>
-            </section>
-
-            <!-- Results Section -->
-            <section id="results-section" class="results-section hidden">
-                <div class="result-card glass-card">
-                    <div class="prediction-card">
-                        <div class="price-info">
-                            <p class="price-label">Predicted Price</p>
-                            <div class="predicted-price-container">
-                                <span class="predicted-price" id="predicted-price"></span>
-                            </div>
-                            <p class="price-range" id="price-range"></p>
-                        </div>
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <i class="fas fa-star"></i>
-                                <span id="rating-info"></span>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-tag"></i>
-                                <span id="category-info"></span>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-box"></i>
-                                <span id="condition-info"></span>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-chart-line"></i>
-                                <span id="trend-info"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="explanation-box">
-                        <h4>Explanation of the Prediction</h4>
-                        <ul id="explanation-list"></ul>
-                    </div>
-                </div>
-            </section>
+            </div>
 
             <!-- Error Section -->
-            <section id="error-section" class="error-section hidden">
-                <div class="error-card glass-card">
-                    <i class="fas fa-exclamation-triangle error-icon"></i>
-                    <h3>Something went wrong!</h3>
-                    <p>We couldn't predict the price. Please try again.</p>
-                    <button id="retry-btn" class="retry-btn">
-                        <i class="fas fa-redo-alt"></i> Try Again
-                    </button>
-                </div>
-            </section>
+            <div id="errorSection" class="error-section hidden">
+                <h3>⚠️ Prediction Failed</h3>
+                <p id="errorMessage">Something went wrong. Please try again.</p>
+                <button class="retry-btn">Try Again</button>
+            </div>
 
+            <!-- Results Container -->
+            <div id="resultsSection" class="results-container">
+                <!-- Empty State -->
+                <div class="empty-state">
+                    <div class="empty-state-icon">🔮</div>
+                    <h3>No Predictions Yet</h3>
+                    <p>Enter product details in the left panel to get started</p>
+                </div>
+            </div>
         </div>
-    </main>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
-        &copy; 2023 Gemini Price Predictor. All rights reserved.
+        <p>© 2025 PriceSense AI | Powered by <span class="highlight">Google Gemini</span> | Made with ❤️ for Indian Market</p>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const predictBtn = document.getElementById('predict-btn');
-            const retryBtn = document.getElementById('retry-btn');
-            const inputSection = document.getElementById('input-section');
-            const loadingSection = document.getElementById('loading-section');
-            const resultsSection = document.getElementById('results-section');
-            const errorSection = document.getElementById('error-section');
-            const productDescription = document.getElementById('product-description');
-            
-            const predictedPriceEl = document.getElementById('predicted-price');
-            const priceRangeEl = document.getElementById('price-range');
-            const ratingInfoEl = document.getElementById('rating-info');
-            const categoryInfoEl = document.getElementById('category-info');
-            const conditionInfoEl = document.getElementById('condition-info');
-            const trendInfoEl = document.getElementById('trend-info');
-            const explanationListEl = document.getElementById('explanation-list');
-
-            // Function to show a section and hide others
-            const showSection = (sectionToShow) => {
-                inputSection.classList.add('hidden');
-                loadingSection.classList.add('hidden');
-                resultsSection.classList.add('hidden');
-                errorSection.classList.add('hidden');
-                
-                sectionToShow.classList.remove('hidden');
-            };
-
-            // Simulate a price prediction
-            const mockPredictPrice = () => {
-                return new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                        const randomNumber = Math.random();
-                        if (randomNumber < 0.8) { // 80% chance of success
-                            resolve({
-                                price: (Math.random() * 500 + 50).toFixed(2),
-                                range: `±$${(Math.random() * 10).toFixed(2)}`,
-                                rating: `${(Math.random() * 5).toFixed(1)}/5 Stars`,
-                                category: 'Electronics',
-                                condition: 'New',
-                                trend: 'High demand',
-                                explanation: [
-                                    'The product is in high demand, driving up the price.',
-                                    'The condition is new, which contributes to a higher valuation.',
-                                    'The brand reputation is strong, influencing consumer trust and willingness to pay.',
-                                    'Similar products in the market are selling at a comparable price point.'
-                                ]
-                            });
-                        } else { // 20% chance of failure
-                            reject(new Error('Prediction failed.'));
-                        }
-                    }, 2000); // Simulate network delay of 2 seconds
-                });
-            };
-
-            // Main prediction handler
-            const handlePrediction = async () => {
-                const description = productDescription.value.trim();
-                if (description === '') {
-                    alert('Please enter a product description.');
-                    return;
-                }
-
-                showSection(loadingSection);
-                
-                try {
-                    const result = await mockPredictPrice();
-                    
-                    // Populate results
-                    predictedPriceEl.textContent = `$${result.price}`;
-                    priceRangeEl.textContent = `Price Range: ${result.range}`;
-                    ratingInfoEl.innerHTML = `<strong>Rating:</strong> ${result.rating}`;
-                    categoryInfoEl.innerHTML = `<strong>Category:</strong> ${result.category}`;
-                    conditionInfoEl.innerHTML = `<strong>Condition:</strong> ${result.condition}`;
-                    trendInfoEl.innerHTML = `<strong>Trend:</strong> ${result.trend}`;
-                    
-                    explanationListEl.innerHTML = '';
-                    result.explanation.forEach(point => {
-                        const li = document.createElement('li');
-                        li.textContent = point;
-                        explanationListEl.appendChild(li);
-                    });
-
-                    showSection(resultsSection);
-
-                } catch (error) {
-                    console.error('Prediction error:', error);
-                    showSection(errorSection);
-                }
-            };
-
-            // Event listeners
-            predictBtn.addEventListener('click', handlePrediction);
-            retryBtn.addEventListener('click', () => {
-                showSection(inputSection);
-                productDescription.value = '';
-            });
-        });
-    </script>
-
+    <script src="app.js"></script>
 </body>
 </html>
