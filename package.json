@@ -1,16 +1,7 @@
 {
   "name": "pricesense-ai",
   "version": "1.0.0",
-  "description": "AI-powered price predictor for Indian market",
-  "main": "index.js",
-  "scripts": {
-    "build": "echo 'Build complete'",
-    "start": "echo 'Starting server'"
-  },
   "dependencies": {
     "node-fetch": "^2.6.7"
-  },
-  "keywords": ["price", "prediction", "ai", "indian-market"],
-  "author": "Your Name",
-  "license": "MIT"
+  }
 }
