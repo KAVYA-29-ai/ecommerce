@@ -11,7 +11,7 @@
     <!-- Header -->
     <header class="header">
         <div class="nav-container">
-            <div class="logo">💰 PriceSense AI</div>
+            <a href="#" class="logo">💰 PriceSense AI</a>
             <nav>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
@@ -24,21 +24,19 @@
     </header>
 
     <!-- Main Container -->
-    <div class="container">
+    <div class="main-container">
         <!-- Input Panel -->
         <div class="input-panel" id="inputSection">
-            <h1>AI Price Predictor</h1>
-            <p>Enter detailed product specifications and get instant AI-powered market price predictions for the Indian market. Try examples like <span class="highlight">"iPhone 15 Pro 256GB used condition"</span> or <span class="highlight">"Dell XPS 13 laptop i7 16GB RAM"</span></p>
+            <h1 class="panel-title">AI Price Predictor</h1>
+            <p class="panel-description">Enter detailed product specifications and get instant AI-powered market price predictions for the Indian market. Try examples like <span class="highlight">"iPhone 15 Pro 256GB used condition"</span> or <span class="highlight">"Dell XPS 13 laptop i7 16GB RAM"</span></p>
             
             <form class="input-form" id="inputForm">
-                <div class="input-wrapper">
-                    <textarea 
-                        id="specsInput" 
-                        placeholder="Enter product specifications here...&#10;&#10;Examples:&#10;• Samsung Galaxy S24 Ultra 512GB new&#10;• MacBook Air M2 8GB RAM used&#10;• Sony WH-1000XM4 headphones&#10;• OnePlus 12 256GB refurbished"
-                        rows="6"
-                    ></textarea>
-                </div>
-                <button type="submit" id="predictBtn">
+                <textarea 
+                    id="specsInput" 
+                    class="specs-input"
+                    placeholder="Enter product specifications here...&#10;&#10;Examples:&#10;• Samsung Galaxy S24 Ultra 512GB new&#10;• MacBook Air M2 8GB RAM used&#10;• Sony WH-1000XM4 headphones&#10;• OnePlus 12 256GB refurbished"
+                ></textarea>
+                <button type="submit" id="predictBtn" class="predict-btn">
                     <span>🔮 Predict Price</span>
                 </button>
             </form>
@@ -46,24 +44,23 @@
 
         <!-- Results Panel -->
         <div class="results-panel">
-            <div class="results-header">
-                <h2>Price Predictions</h2>
-                <p>Real-time AI analysis of Indian market prices</p>
-            </div>
-
+            <h2 class="results-title">Price Predictions</h2>
+            <p class="results-subtitle">Real-time AI analysis of Indian market prices</p>
+            
             <!-- Loading Section -->
             <div id="loadingSection" class="loading-section hidden">
-                <div class="loading-spinner"></div>
                 <div class="loading-text">
+                    <div class="loading-spinner"></div>
                     <p>Analyzing market data...</p>
                 </div>
             </div>
 
             <!-- Error Section -->
             <div id="errorSection" class="error-section hidden">
-                <h3>⚠️ Prediction Failed</h3>
+                <div class="error-icon">⚠️</div>
+                <h3>Prediction Failed</h3>
                 <p id="errorMessage">Something went wrong. Please try again.</p>
-                <button class="retry-btn">Try Again</button>
+                <button class="retry-btn" onclick="document.getElementById('inputForm').dispatchEvent(new Event('submit'))">Try Again</button>
             </div>
 
             <!-- Results Container -->
@@ -77,11 +74,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <p>© 2025 PriceSense AI | Powered by <span class="highlight">Google Gemini</span> | Made with ❤️ for Indian Market</p>
-    </footer>
 
     <script src="app.js"></script>
 </body>
