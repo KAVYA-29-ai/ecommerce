@@ -1,80 +1,56 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PriceSense AI - Indian Market Price Predictor</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PriceSense AI — AI-powered Indian market price estimation.">
+  <title>PriceSense AI — Market Price Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="nav-container">
-            <a href="#" class="logo">💰 PriceSense AI</a>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#predict">Predict</a></li>
-                    <li><a href="#about">How it Works</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+  <div class="orb orb-a"></div><div class="orb orb-b"></div>
+  <main class="shell">
+    <header class="hero">
+      <div class="brand">◈ PRICESENSE AI</div>
+      <h1>Know the price.<br><span>Understand the market.</span></h1>
+      <p>Describe a product and get an AI-powered Indian market price estimate, confidence score and transparent reasoning.</p>
     </header>
 
-    <!-- Main Container -->
-    <div class="main-container">
-        <!-- Input Panel -->
-        <div class="input-panel" id="inputSection">
-            <h1 class="panel-title">AI Price Predictor</h1>
-            <p class="panel-description">Enter detailed product specifications and get instant AI-powered market price predictions for the Indian market. Try examples like <span class="highlight">"iPhone 15 Pro 256GB used condition"</span> or <span class="highlight">"Dell XPS 13 laptop i7 16GB RAM"</span></p>
-            
-            <form class="input-form" id="inputForm">
-                <textarea 
-                    id="specsInput" 
-                    class="specs-input"
-                    placeholder="Enter product specifications here...&#10;&#10;Examples:&#10;• Samsung Galaxy S24 Ultra 512GB new&#10;• MacBook Air M2 8GB RAM used&#10;• Sony WH-1000XM4 headphones&#10;• OnePlus 12 256GB refurbished"
-                ></textarea>
-                <button type="submit" id="predictBtn" class="predict-btn">
-                    <span>🔮 Predict Price</span>
-                </button>
-            </form>
+    <section class="workspace">
+      <aside class="panel input-panel">
+        <div class="eyebrow">PRICE ANALYST</div>
+        <h2>What are you pricing?</h2>
+        <p class="muted">Include brand, model, storage, condition, age and other useful specifications.</p>
+        <form id="inputForm">
+          <textarea id="specsInput" maxlength="2000" placeholder="Example: iPhone 15 Pro, 256GB, natural titanium, excellent condition, 10 months old..."></textarea>
+          <div class="meta"><span>Up to 2,000 characters</span><span id="charCount">0</span></div>
+          <button id="predictBtn" type="submit">✦ Analyze price <span>→</span></button>
+        </form>
+        <div class="examples">
+          <span>Try an example</span>
+          <button type="button" data-example="Samsung Galaxy S24 Ultra, 256GB, 8 months old, excellent condition">Galaxy S24 Ultra</button>
+          <button type="button" data-example="MacBook Air M2, 8GB RAM, 256GB SSD, 1 year old, excellent condition">MacBook Air M2</button>
+          <button type="button" data-example="Sony WH-1000XM5 headphones, lightly used, original accessories included">Sony XM5</button>
         </div>
+      </aside>
 
-        <!-- Results Panel -->
-        <div class="results-panel">
-            <h2 class="results-title">Price Predictions</h2>
-            <p class="results-subtitle">Real-time AI analysis of Indian market prices</p>
-            
-            <!-- Loading Section -->
-            <div id="loadingSection" class="loading-section hidden">
-                <div class="loading-text">
-                    <div class="loading-spinner"></div>
-                    <p>Analyzing market data...</p>
-                </div>
-            </div>
-
-            <!-- Error Section -->
-            <div id="errorSection" class="error-section hidden">
-                <div class="error-icon">⚠️</div>
-                <h3>Prediction Failed</h3>
-                <p id="errorMessage">Something went wrong. Please try again.</p>
-                <button class="retry-btn" onclick="document.getElementById('inputForm').dispatchEvent(new Event('submit'))">Try Again</button>
-            </div>
-
-            <!-- Results Container -->
-            <div id="resultsSection" class="results-container">
-                <!-- Empty State -->
-                <div class="empty-state">
-                    <div class="empty-state-icon">🔮</div>
-                    <h3>No Predictions Yet</h3>
-                    <p>Enter product details in the left panel to get started</p>
-                </div>
-            </div>
+      <section class="panel result-panel">
+        <div class="result-head">
+          <div><div class="eyebrow">AI INSIGHT</div><h2>Prediction</h2></div>
+          <span class="live-dot">● AI READY</span>
         </div>
-    </div>
+        <div id="loadingSection" class="state hidden"><div class="spinner"></div><h3>Analyzing the market...</h3><p id="loadingText">Extracting product specifications</p></div>
+        <div id="errorSection" class="error hidden"><strong>Couldn’t complete the analysis</strong><p id="errorMessage"></p><button id="retryBtn" type="button">Try again</button></div>
+        <div id="emptyState" class="state"><div class="empty-icon">◌</div><h3>Your prediction will appear here</h3><p>Price, range, confidence and AI reasoning — all in one view.</p></div>
+        <div id="resultsSection" class="hidden"></div>
+      </section>
+    </section>
 
-    <script src="app.js"></script>
+    <footer>PriceSense AI · Gemini-powered market estimation · Estimates are not live quotes</footer>
+  </main>
+  <script src="app.js"></script>
 </body>
 </html>
