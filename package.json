@@ -1,7 +1,10 @@
 {
   "name": "pricesense-ai",
-  "version": "1.0.0",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "AI-powered Indian market price estimation tool.",
   "dependencies": {
-    "node-fetch": "^2.6.7"
+    "@google/genai": "^1.30.0"
   }
 }
